@@ -1,0 +1,9 @@
+[package]
+name = "genshadow"
+version = "0.1.2"
+authors = ["Magnus Wallin <magnuswallin@tutanota.com>"]
+
+[dependencies]
+rpassword = "2.0.0"
+pwhash = "0.1.2"
+clap = "2.31.2"
