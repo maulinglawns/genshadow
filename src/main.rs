@@ -26,7 +26,7 @@ fn getpass() -> String {
     }
 }
 
-fn make_sha512_hash(pass_text: &str) -> bool {
+fn make_sha512_hash(pass_text: &str) {
     // Create sha512 hash
     // Arguments:
     // A string
@@ -36,10 +36,9 @@ fn make_sha512_hash(pass_text: &str) -> bool {
     if pass_text.len() < 6 {
         println!("Blatantly refusing to generate hash. \
         Password is too short!");
-        return false;
+        std::process::exit(1);
     }
     println!("Your sha512 hash:\n{}", sha512_crypt::hash(pass_text).unwrap());
-    return true;
 }
 
 fn main() {
