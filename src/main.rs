@@ -4,6 +4,8 @@ extern crate clap;
 use pwhash::sha512_crypt;
 use clap::App;
 
+const PWLEN: usize = 12;
+
 fn getpass() -> String {
     // Ask for password and verify
     // Return values:
@@ -11,8 +13,8 @@ fn getpass() -> String {
     loop {
         let pass1 = rpassword::prompt_password_stdout("Enter your password: ")
             .unwrap();
-        if pass1.len() < 6 {
-            println!("Password is too short, use at least 6 characters.");
+        if pass1.len() < PWLEN {
+            println!("Password is too short, use at least {PWLEN} characters.");
             continue;
         }
         let pass2 = rpassword::prompt_password_stdout("Please verify your password: ")
@@ -33,7 +35,7 @@ fn make_sha512_hash(pass_text: &str) {
     // Return values:
     // OK: true
     // Err: false
-    if pass_text.len() < 6 {
+    if pass_text.len() < PWLEN {
         println!("Blatantly refusing to generate hash. \
         Password is too short!");
         std::process::exit(1);
